@@ -1,0 +1,6 @@
+FROM kong
+
+CMD kong start
+
+EXPOSE 8000 8443 8001 7946
+

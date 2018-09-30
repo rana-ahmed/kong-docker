@@ -38,7 +38,7 @@ services:
       - 8000:8000
       - 8443:8443
       - 8001:8001
-      - 8444:8444        
+      - 8444:8444
     expose:
       - 8000
       - 8001
@@ -49,3 +49,14 @@ services:
       interval: 5s
       retries: 10
 
+  kong-dashboard:
+    image: pgbi/kong-dashboard:v3.5.0
+
+    depends_on:
+      kong:
+        condition: service_healthy
+    command: "start --kong-url http://kong:8001"
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
